@@ -11,7 +11,7 @@
 // haven't adopted it here.
 //
 var g_main = {
-    
+
     // "Frame Time" is a (potentially high-precision) frame-clock for animations
     _frameTime_ms : null,
     _frameTimeDelta_ms : null,

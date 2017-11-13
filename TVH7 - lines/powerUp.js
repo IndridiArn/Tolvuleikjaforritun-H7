@@ -20,9 +20,6 @@ powerUp.prototype.update = function(du) {
 };
 
 powerUp.prototype.render = function(ctx) {
-  ctx.shadowBlur = 10;
-  ctx.shadowColor = "white";
-
 	if(this.active === true){
   if(this.type === 0){
       p_sprites[1].scale = 0.25;
@@ -43,7 +40,9 @@ powerUp.prototype.render = function(ctx) {
     p_sprites[3].scale = 0.25;
     p_sprites[3].drawWrappedCentredAt(ctx,this.cx,this.cy,0);
   }
-      ctx.shadowBlur = 0;
-      //ctx.shadowColor = this.color;
+    //ctx.fillStyle="green";
+
+	//ctx.fillRect(this.cx,this.cy,10,10);
+	//ctx.stroke();
   }
 };

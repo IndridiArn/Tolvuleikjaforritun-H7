@@ -304,8 +304,6 @@ var winner = "Nobody";
 
 function renderSimulation(ctx) {
 
-  //g_ball.render(ctx);
-
   if (picking === false && playing === false) {
     modeManager.render(ctx);
     if(numbplayers > 0 && numbplayers < 5) picking = true;
@@ -415,6 +413,7 @@ function gameReset(){
   g_snakePlayer1.trail = []
   g_snakePlayer1.rTrail = []
   g_snakePlayer1.oldTrails = []
+  g_snakePlayer1.particles = []
   g_snakePlayer1.rTrail.startX = g_snakePlayer1.cx;
   g_snakePlayer1.rTrail.startY = g_snakePlayer1.cy;
 
@@ -427,6 +426,7 @@ function gameReset(){
   g_snakePlayer2.trail = []
   g_snakePlayer2.rTrail = []
   g_snakePlayer2.oldTrails = []
+  g_snakePlayer2.particles = []
   g_snakePlayer2.rTrail.startX = g_snakePlayer2.cx;
   g_snakePlayer2.rTrail.startY = g_snakePlayer2.cy;
 
@@ -439,6 +439,7 @@ function gameReset(){
   g_snakePlayer3.trail = []
   g_snakePlayer3.rTrail = []
   g_snakePlayer3.oldTrails = []
+  g_snakePlayer3.particles = []
   g_snakePlayer3.rTrail.startX = g_snakePlayer3.cx;
   g_snakePlayer3.rTrail.startY = g_snakePlayer3.cy;
 
@@ -451,6 +452,7 @@ function gameReset(){
   g_snakePlayer4.trail = []
   g_snakePlayer4.rTrail = []
   g_snakePlayer4.oldTrails = []
+  g_snakePlayer4.particles = []
   g_snakePlayer4.rTrail.startX = g_snakePlayer4.cx;
   g_snakePlayer4.rTrail.startY = g_snakePlayer4.cy;
 
@@ -459,6 +461,9 @@ function gameReset(){
   currentPowerUp.type = Math.round(Math.random() * 3)
   currentPowerUp.counter = 0
   currentPowerUp.active = true
+
+  for(var i = 0; i < g_sprites.length; i++)
+    g_sprites[i].glow = false;
 
   picking = false;
   playing = false;

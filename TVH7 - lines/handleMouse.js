@@ -13,12 +13,13 @@
 var g_canvas = document.getElementById("myCanvas");
 var g_ctx = g_canvas.getContext("2d");
 var g_mouseX = 0,
-  g_mouseY = 0;
-var playerpick = 0;
-var numbplayers = 0;
-var pickedplayers = 0;
-var selectedplayers = [];
-var checker = true;
+    g_mouseY = 0;
+
+var playerpick = 0; // which player is choosing now
+var numbplayers = 0; // how many players should choose
+var pickedplayers = 0; // how many players HAVE chosen already
+var selectedplayers = []; // array of selected players
+var checker = true; // idk
 
 function handleMouse(evt) {
 
@@ -47,6 +48,16 @@ function handleMouse(evt) {
             playerpick = i;
             console.log(i);
             selectedplayers.push(playerpick);
+            g_sprites[i].glow = true;
+            if(selectedplayers.length === 1)
+              g_sprites[i].glowColor = '#00FFFF';
+            if(selectedplayers.length === 2)
+              g_sprites[i].glowColor = '#00FF00';
+            if(selectedplayers.length === 3)
+              g_sprites[i].glowColor = 'red';
+            if(selectedplayers.length === 4)
+              g_sprites[i].glowColor = 'purple';
+
           }
         }
         minniX += 140;
@@ -74,13 +85,15 @@ function handleNumPlayers(evt) {
 
   var player1StartHnitX = 60;
   var player1StopHnitX = 210;
+
   var player2StartHnitX = 360;
   var player2StopHnitX = 510;
+
   var player3StartHnitX = 660;
   var player3StopHnitX = 810;
+
   var player4StartHnitX = 960;
   var player4StopHnitX = 1110;
-
 
   var playersStartHnitY = 200;
   var playersStopHnitY = 300;

@@ -8,6 +8,7 @@ function Snake(descr) {
   this.reset_rotation = this.rotation;
   this.rTrail.startX = this.cx;
   this.rTrail.startY = this.cy;
+  this.particles = []
 }
 
 // Add these properties to the prototype, where they will server as
@@ -90,9 +91,25 @@ Snake.prototype.reset = function() {
   this.halt();
 };
 
+Snake.prototype.deathParticles = function() {
+
+  for(var i = 0; i < 25; i++){
+    var p = new particle({
+        cx: this.cx,
+        cy: this.cy
+    })
+  
+  this.particles.push(p)
+  }
+
+};
+
 Snake.prototype.halt = function() {
   this.vel = 0;
   this.dead = true;
+
+  this.deathParticles();
+  
 };
 
 Snake.prototype.updateTrail = function() {
@@ -105,7 +122,7 @@ Snake.prototype.updateTrail = function() {
 Snake.prototype.renderTrail = function(ctx) {
   ctx.strokeStyle = this.color;
   ctx.lineWidth = 5;
-  ctx.shadowBlur = 20;
+  ctx.shadowBlur = 50;
   ctx.shadowColor = "white";
   
   // gömlu línurnar renderaðar
@@ -134,9 +151,8 @@ Snake.prototype.wrapPosition = function() {
     if (this.cx - g_snakeSprite.img.width > myCanvas.width) this.cx -= myCanvas.width;
   */
 
-
-
 };
+
 Snake.prototype.render1 = function(ctx) {
   // (cx, cy) is the centre; must offset it for drawing
   ctx.fillStyle = this.color;
@@ -155,6 +171,10 @@ Snake.prototype.render1 = function(ctx) {
     g_sprites[playerpick].scale = 1;
   */
   ctx.shadowBlur = 0;
+
+  if(this.dead === true){
+    drawParticles(ctx, this.particles)
+  }
 };
 
 Snake.prototype.render2 = function(ctx) {
@@ -175,6 +195,10 @@ Snake.prototype.render2 = function(ctx) {
   */
 
   ctx.shadowBlur = 0;
+
+  if(this.dead === true){
+    drawParticles(ctx, this.particles)
+  }
 };
 Snake.prototype.render3 = function(ctx) {
   ctx.fillStyle = this.color;
@@ -192,6 +216,10 @@ Snake.prototype.render3 = function(ctx) {
     g_sprites[playerpick].scale = 1;
   */
   ctx.shadowBlur = 0;
+
+  if(this.dead === true){
+    drawParticles(ctx, this.particles)
+  }
 };
 Snake.prototype.render4 = function(ctx) {
   // (cx, cy) is the centre; must offset it for drawing
@@ -211,6 +239,10 @@ Snake.prototype.render4 = function(ctx) {
     g_sprites[playerpick].scale = 1;
   */
   ctx.shadowBlur = 0;
+
+  if(this.dead === true){
+    drawParticles(ctx, this.particles)
+  }
 };
 
 

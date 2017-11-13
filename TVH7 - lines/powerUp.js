@@ -6,15 +6,15 @@ function powerUp(descr) {
 }
 
 powerUp.prototype.update = function(du) {
-	if(this.active === false && g_snakePlayer1.dead === false && g_snakePlayer2.dead === false )
-	  currentPowerUp.counter = currentPowerUp.counter-5;
+	if(this.active === false)
+	  this.counter = this.counter-5;
 
   if(this.counter < 1 && this.active === false){
     this.type = Math.round(Math.random()*3);
   	this.active = true;
     this.counter = 0;
-    this.cx = Math.random() * 700;
-		this.cy = Math.random() * 500;
+    this.cx = Math.random() * 1200;
+		this.cy = Math.random() * 1000;
   }
 
 };

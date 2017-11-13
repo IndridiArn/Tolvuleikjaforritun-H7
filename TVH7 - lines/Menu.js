@@ -31,10 +31,12 @@ function Menu() {
       //
       g_sprites[i].drawWrappedCentredAt(ctx, this.cx + j, this.cy, 0);
     };
+
     Menu.prototype.setPos = function(cx, cy) {
       this.cx = cx;
       this.cy = cy;
     }
+    
     Menu.prototype.getPos = function() {
       return {
         posX: this.cx,

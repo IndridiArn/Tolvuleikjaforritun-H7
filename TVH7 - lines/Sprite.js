@@ -20,14 +20,25 @@ function Sprite(image) {
     this.width = 140;
     this.height = 190;
     this.scale = 1;
+    this.glow = false;
+    this.glowColor = "white";
 }
 
 Sprite.prototype.drawAt = function (ctx, x, y) {
+    if(this.glow === true){
+    ctx.shadowBlur = 50;
+    ctx.shadowColor = this.glowColor;
+    }
     ctx.drawImage(this.image,
                   x, y);
+    ctx.shadowBlur = 0;
 };
 
 Sprite.prototype.drawCentredAt = function (ctx, cx, cy, rotation) {
+    if(this.glow === true){
+    ctx.shadowBlur = 50;
+    ctx.shadowColor = this.glowColor;
+    }
     if (rotation === undefined) rotation = 0;
 
     var w = this.width,
@@ -44,9 +55,14 @@ Sprite.prototype.drawCentredAt = function (ctx, cx, cy, rotation) {
                   -w/2, -h/2);
 
     ctx.restore();
+    ctx.shadowBlur = 0;
 };
 
 Sprite.prototype.drawWrappedCentredAt = function (ctx, cx, cy, rotation) {
+    if(this.glow === true){
+    ctx.shadowBlur = 50;
+    ctx.shadowColor = this.glowColor;
+    }
 
     // Get "screen width"
     var sw = g_canvas.width;
@@ -57,9 +73,15 @@ Sprite.prototype.drawWrappedCentredAt = function (ctx, cx, cy, rotation) {
     // Left and Right wraps
     this.drawWrappedVerticalCentredAt(ctx, cx - sw, cy, rotation);
     this.drawWrappedVerticalCentredAt(ctx, cx + sw, cy, rotation);
+
+    ctx.shadowBlur = 0;
 };
 
 Sprite.prototype.drawWrappedVerticalCentredAt = function (ctx, cx, cy, rotation) {
+    if(this.glow === true){
+    ctx.shadowBlur = 50;
+    ctx.shadowColor = this.glowColor;
+    }
 
     // Get "screen height"
     var sh = g_canvas.height;
@@ -70,4 +92,6 @@ Sprite.prototype.drawWrappedVerticalCentredAt = function (ctx, cx, cy, rotation)
     // Top and Bottom wraps
     this.drawCentredAt(ctx, cx, cy - sh, rotation);
     this.drawCentredAt(ctx, cx, cy + sh, rotation);
+
+    ctx.shadowBlur = 0;
 };

@@ -229,15 +229,117 @@ Snake.prototype.getPowerUp = function(powerup) {
       this.vel = this.vel + 1;
 
     else if (currentPowerUp.type === 1) {
-      if (this.number === 1)
-        g_snakePlayer2.trail = [];
-      if (this.number === 2)
-        g_snakePlayer1.trail = [];
-    } else if (currentPowerUp.type === 2) {
-      if (this.number === 1)
+      if (this.number === 1){
+        g_snakePlayer2.trail = []
+        g_snakePlayer2.rTrail = []
+        g_snakePlayer2.oldTrails = []
+        g_snakePlayer2.rTrail.startX = g_snakePlayer2.cx;
+        g_snakePlayer2.rTrail.startY = g_snakePlayer2.cy;
+
+        g_snakePlayer3.trail = []
+        g_snakePlayer3.rTrail = []
+        g_snakePlayer3.oldTrails = []
+        g_snakePlayer3.rTrail.startX = g_snakePlayer3.cx;
+        g_snakePlayer3.rTrail.startY = g_snakePlayer3.cy;
+
+        g_snakePlayer4.trail = []
+        g_snakePlayer4.rTrail = []
+        g_snakePlayer4.oldTrails = []
+        g_snakePlayer4.rTrail.startX = g_snakePlayer4.cx;
+        g_snakePlayer4.rTrail.startY = g_snakePlayer4.cy;
+      }
+
+      if (this.number === 2){
+        g_snakePlayer1.trail = []
+        g_snakePlayer1.rTrail = []
+        g_snakePlayer1.oldTrails = []
+        g_snakePlayer1.rTrail.startX = g_snakePlayer1.cx;
+        g_snakePlayer1.rTrail.startY = g_snakePlayer1.cy;
+
+        g_snakePlayer3.trail = []
+        g_snakePlayer3.rTrail = []
+        g_snakePlayer3.oldTrails = []
+        g_snakePlayer3.rTrail.startX = g_snakePlayer3.cx;
+        g_snakePlayer3.rTrail.startY = g_snakePlayer3.cy;
+
+        g_snakePlayer4.trail = []
+        g_snakePlayer4.rTrail = []
+        g_snakePlayer4.oldTrails = []
+        g_snakePlayer4.rTrail.startX = g_snakePlayer4.cx;
+        g_snakePlayer4.rTrail.startY = g_snakePlayer4.cy;
+      }
+
+      if (this.number === 3){
+        g_snakePlayer1.trail = []
+        g_snakePlayer1.rTrail = []
+        g_snakePlayer1.oldTrails = []
+        g_snakePlayer1.rTrail.startX = g_snakePlayer1.cx;
+        g_snakePlayer1.rTrail.startY = g_snakePlayer1.cy;
+
+        g_snakePlayer2.trail = []
+        g_snakePlayer2.rTrail = []
+        g_snakePlayer2.oldTrails = []
+        g_snakePlayer2.rTrail.startX = g_snakePlayer2.cx;
+        g_snakePlayer2.rTrail.startY = g_snakePlayer2.cy;
+
+        g_snakePlayer4.trail = []
+        g_snakePlayer4.rTrail = []
+        g_snakePlayer4.oldTrails = []
+        g_snakePlayer4.rTrail.startX = g_snakePlayer4.cx;
+        g_snakePlayer4.rTrail.startY = g_snakePlayer4.cy;
+      }
+
+      if (this.number === 4){
+        g_snakePlayer1.trail = []
+        g_snakePlayer1.rTrail = []
+        g_snakePlayer1.oldTrails = []
+        g_snakePlayer1.rTrail.startX = g_snakePlayer1.cx;
+        g_snakePlayer1.rTrail.startY = g_snakePlayer1.cy;
+
+        g_snakePlayer2.trail = []
+        g_snakePlayer2.rTrail = []
+        g_snakePlayer2.oldTrails = []
+        g_snakePlayer2.rTrail.startX = g_snakePlayer2.cx;
+        g_snakePlayer2.rTrail.startY = g_snakePlayer2.cy;
+
+        g_snakePlayer3.trail = []
+        g_snakePlayer3.rTrail = []
+        g_snakePlayer3.oldTrails = []
+        g_snakePlayer3.rTrail.startX = g_snakePlayer3.cx;
+        g_snakePlayer3.rTrail.startY = g_snakePlayer3.cy;
+      }
+    } 
+
+
+
+
+
+    else if (currentPowerUp.type === 2) {
+      if (this.number === 1){
         g_snakePlayer2.vel = g_snakePlayer2.vel - 1;
-      if (this.number === 2)
+        g_snakePlayer3.vel = g_snakePlayer3.vel - 1;
+        g_snakePlayer4.vel = g_snakePlayer4.vel - 1;
+      }
+
+      if (this.number === 2){
         g_snakePlayer1.vel = g_snakePlayer1.vel - 1;
+        g_snakePlayer3.vel = g_snakePlayer3.vel - 1;
+        g_snakePlayer4.vel = g_snakePlayer4.vel - 1;
+      }
+
+      if (this.number === 3){
+        g_snakePlayer1.vel = g_snakePlayer1.vel - 1;
+        g_snakePlayer2.vel = g_snakePlayer2.vel - 1;
+        g_snakePlayer4.vel = g_snakePlayer4.vel - 1;
+      }
+
+      if (this.number === 4){
+        g_snakePlayer1.vel = g_snakePlayer1.vel - 1;
+        g_snakePlayer2.vel = g_snakePlayer2.vel - 1;
+        g_snakePlayer3.vel = g_snakePlayer3.vel - 1;
+      }
+
+
     } else if (currentPowerUp.type === 3)
       this.wrap = true;
   }
@@ -285,14 +387,34 @@ Snake.prototype.collidesWith = function() {
   }
 
   if (this.wrap === true) {
-    if (this.cx < 0)
+    if (this.cx < 0){
       this.cx = this.cx + 1190;
-    if (this.cx > 1190)
+      this.oldTrails.push(this.rTrail);
+      this.rTrail = [];
+      this.rTrail.startX = this.cx;
+      this.rTrail.startY = this.cy;
+    }
+    if (this.cx > 1190){
       this.cx = 0;
-    if (this.cy < 0)
+      this.oldTrails.push(this.rTrail);
+      this.rTrail = [];
+      this.rTrail.startX = this.cx;
+      this.rTrail.startY = this.cy;
+    }
+    if (this.cy < 0){
       this.cy = this.cy + 990;
-    if (this.cy > 990)
+      this.oldTrails.push(this.rTrail);
+      this.rTrail = [];
+      this.rTrail.startX = this.cx;
+      this.rTrail.startY = this.cy;
+    }
+    if (this.cy > 990){
       this.cy = 0;
+      this.oldTrails.push(this.rTrail);
+      this.rTrail = [];
+      this.rTrail.startX = this.cx;
+      this.rTrail.startY = this.cy;
+    }
   }
 
 

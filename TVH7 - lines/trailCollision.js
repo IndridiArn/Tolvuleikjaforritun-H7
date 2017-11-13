@@ -18,27 +18,13 @@ function checkCollision(n1, n2){
       var d = Math.sqrt( ((pos.cx - p2.cx)*(pos.cx - p2.cx)) +
                          ((pos.cy - p2.cy)*(pos.cy - p2.cy)))
 
-      if(d < 10){
+      if(d < 7){
 
         p2.halt();
         endingSoundEffects[selectedplayers[n2-1]].play();
-        deadPlayers = deadPlayers + 1;
+        p2.dead = true;
 
         console.log("Player " + n2 +  " hit player " + n1 + "'s trail!");
-
-        if(deadPlayers === pickedplayers - 1 && pickedplayers > 1)
-          gameOver = true;
-          g_snakePlayer1.vel = 0
-          g_snakePlayer2.vel = 0
-          g_snakePlayer3.vel = 0
-          g_snakePlayer4.vel = 0
-        
-        if(deadPlayers === pickedplayers && pickedplayers === 1)
-          gameOver = true;
-          g_snakePlayer1.vel = 0
-          g_snakePlayer2.vel = 0
-          g_snakePlayer3.vel = 0
-          g_snakePlayer4.vel = 0
 
         }
     

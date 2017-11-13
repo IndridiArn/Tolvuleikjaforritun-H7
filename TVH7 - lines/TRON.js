@@ -273,6 +273,7 @@ function updateSimulation(du) {
       g_snakePlayer3.update(du);
       g_snakePlayer4.update(du);
     }
+    checkWin();
     currentPowerUp.update(du);
     checkAll(pickedplayers);
     //console.log("þú hefur kallað á þetta fall");
@@ -297,6 +298,7 @@ var playing = false;
 var updateplaying = false;
 var gameOver = false;
 var deadPlayers = 0;
+var winner = "Nobody";
 // GAME-SPECIFIC RENDERING
 
 
@@ -341,13 +343,62 @@ function renderSimulation(ctx) {
   };
 
   if (gameOver === true) {
-    ctx.font = "30px Arial";
-    ctx.fillText("Game over!",600,600);
-    ctx.fillText("Press R to play again.", 600, 800);
+    ctx.shadowBlur = 10;
+    ctx.shadowColor = "white";
+    ctx.font = "100px Arial";
+    ctx.fillStyle = "white";
+    ctx.fillText("Game over!",320,300);
+    ctx.fillText(winner, 290, 500);
+    ctx.fillText("wins!", 670, 500);
+    ctx.fillText("Press R to play again.", 120, 700);
+    ctx.shadowBlur = 0;
   };
 
 };
 
+function checkWin(){
+      var countDead = 0
+
+          if(g_snakePlayer1.dead === true) countDead = countDead+1
+          if(pickedplayers >= 2)
+            if(g_snakePlayer2.dead === true) countDead = countDead+1
+          if(pickedplayers >= 3)
+            if(g_snakePlayer3.dead === true) countDead = countDead+1
+          if(pickedplayers === 4)    
+            if(g_snakePlayer4.dead === true) countDead = countDead+1
+
+        deadPlayers = countDead
+
+        console.log("Dead players: " + deadPlayers + "    Picked players: " + pickedplayers)
+
+          if(deadPlayers === pickedplayers - 1 && pickedplayers > 1){
+            gameOver = true;
+            g_snakePlayer1.vel = 0
+            g_snakePlayer2.vel = 0
+            g_snakePlayer3.vel = 0
+            g_snakePlayer4.vel = 0
+
+          if(g_snakePlayer1.dead === false) winner = "Player 1"
+          if(pickedplayers >= 2)
+            if(g_snakePlayer2.dead === false) winner = "Player 2"
+          if(pickedplayers >= 3)
+            if(g_snakePlayer3.dead === false) winner = "Player 3"
+          if(pickedplayers === 4)    
+            if(g_snakePlayer4.dead === false) winner = "Player 4"
+
+         
+        }
+        
+        if(deadPlayers === pickedplayers && pickedplayers === 1){
+          gameOver = true;
+          g_snakePlayer1.vel = 0
+          g_snakePlayer2.vel = 0
+          g_snakePlayer3.vel = 0
+          g_snakePlayer4.vel = 0
+        }
+
+
+}
 
 function gameReset(){
 

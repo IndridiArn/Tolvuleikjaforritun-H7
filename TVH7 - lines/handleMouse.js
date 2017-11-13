@@ -95,8 +95,8 @@ function handleNumPlayers(evt) {
   var player4StartHnitX = 960;
   var player4StopHnitX = 1110;
 
-  var playersStartHnitY = 200;
-  var playersStopHnitY = 300;
+  var playersStartHnitY = 400;
+  var playersStopHnitY = 500;
 
 
     if (g_mouseY > playersStartHnitY && g_mouseY < playersStopHnitY) {

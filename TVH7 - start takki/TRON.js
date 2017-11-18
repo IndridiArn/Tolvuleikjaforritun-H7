@@ -293,6 +293,7 @@ function updateSimulation(du) {
 //
 // It then delegates the game-specific logic to `gameRender`
 
+var flag = 0;
 var picking = false;
 var playing = false;
 var updateplaying = false;
@@ -309,47 +310,52 @@ function renderSimulation(ctx) {
     modeManager.render(ctx);
     if(numbplayers > 0 && numbplayers < 5) picking = true;
   }
-  if(picking === true && updateplaying === false){
+  if(picking === true && updateplaying === false && start === false){
     entityManager.render(ctx);
     //playing = true;
   }
 
   if (pickedplayers === 1) {
-    start = true;
+    playing = true;
     g_snakePlayer1.render1(ctx);
-
+    picking = false;
   }
 
   if (pickedplayers === 2 && selectedplayers.length === 2) {
-    start = true
+    playing = true;
     g_snakePlayer1.render1(ctx);
     g_snakePlayer2.render2(ctx);
+    picking = false;
   }
   if (pickedplayers === 3 && selectedplayers.length === 3) {
-    start = true
+    playing = true;
     g_snakePlayer1.render1(ctx);
     g_snakePlayer2.render2(ctx);
     g_snakePlayer3.render3(ctx);
+    picking = false;
   }
   if (pickedplayers >= 4 && selectedplayers.length >= 4) {
-    start = true
+    playing = true;
     g_snakePlayer1.render1(ctx);
     g_snakePlayer2.render2(ctx);
     g_snakePlayer3.render3(ctx);
     g_snakePlayer4.render4(ctx);
+    picking = false;
   }
 
   /*if (start === true) {
+  }*/
+
+  if (playing === true && updateplaying === false && start === false) {
     //if(pickedplayers ===1) start = false;
     //playing = false
     ctx.fillText("Hefja leik! ", 400, 250)
-  }*/
-
-  if (playing === true) {
+    //start = true
+  };
+  if(start === true){
     updateplaying = true;
     currentPowerUp.render(ctx);
-
-  };
+  }
 
   if (gameOver === true) {
     ctx.shadowBlur = 10;

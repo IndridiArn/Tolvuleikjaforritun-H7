@@ -2,15 +2,11 @@
 //
 // Step 13: Simplify
 /*
-
 Supporting timer-events (via setInterval) *and* frame-events (via requestAnimationFrame)
 adds significant complexity to the the code.
-
 I can simplify things a little by focusing on the latter case only (which is the
 superior mechanism of the two), so let's try doing that...
-
 The "MAINLOOP" code, inside g_main, is much simplified as a result.
-
 */
 
 "use strict";
@@ -299,12 +295,25 @@ var playing = false;
 var updateplaying = false;
 var gameOver = false;
 var deadPlayers = 0;
-var winner = "Nobody";
+var winner = "     Enginn";
 var start = false;
 // GAME-SPECIFIC RENDERING
 
+var background = new Image();
+background.src = "resizeImageFolder/grid.jpg";
+
+background.onload = function(ctx){
+    ctx.drawImage(background,0,0);   
+}
 
 function renderSimulation(ctx) {
+  if(playing === true) background.onload(ctx);
+
+  if (pickedplayers === 1) {
+    playing = true;
+    g_snakePlayer1.render1(ctx);
+    picking = false;
+  }
 
   if (picking === false && playing === false) {
     modeManager.render(ctx);
@@ -313,12 +322,6 @@ function renderSimulation(ctx) {
   if(picking === true && updateplaying === false && start === false){
     entityManager.render(ctx);
     //playing = true;
-  }
-
-  if (pickedplayers === 1) {
-    playing = true;
-    g_snakePlayer1.render1(ctx);
-    picking = false;
   }
 
   if (pickedplayers === 2 && selectedplayers.length === 2) {
@@ -343,13 +346,23 @@ function renderSimulation(ctx) {
     picking = false;
   }
 
-  /*if (start === true) {
-  }*/
-
   if (playing === true && updateplaying === false && start === false) {
     //if(pickedplayers ===1) start = false;
     //playing = false
-    ctx.fillText("Hefja leik! ", 400, 250)
+    ctx.shadowBlur = 50;
+    ctx.shadowColor = "#72EAE7";
+    ctx.fillStyle = "#72EAE7";
+    ctx.fillRect(400,170,400,130);
+    ctx.shadowBlur = 0;
+    ctx.fillStyle = "black";
+    ctx.fillRect(405,175,390,120);
+    ctx.stroke();
+    ctx.fillStyle = "#72EAE7";
+    ctx.shadowBlur = 50;
+    ctx.shadowColor = "#72EAE7";
+    ctx.font = "bold 45px Bungee Shade";
+    ctx.fillText("Hefja leik! ", 425, 250)
+    ctx.shadowBlur = 0;
     //start = true
   };
   if(start === true){
@@ -358,14 +371,14 @@ function renderSimulation(ctx) {
   }
 
   if (gameOver === true) {
-    ctx.shadowBlur = 10;
+    ctx.shadowBlur = 50;
     ctx.shadowColor = "white";
-    ctx.font = "100px Arial";
+    ctx.font = "bold 60px Bungee Shade";
     ctx.fillStyle = "white";
-    ctx.fillText("Game over!",320,300);
-    ctx.fillText(winner, 290, 500);
-    ctx.fillText("wins!", 670, 500);
-    ctx.fillText("Press R to play again.", 120, 700);
+    ctx.fillText("Leik lokið!",340,300);
+    ctx.fillText(winner, 140, 500);
+    ctx.fillText("vinnur!", 690, 500);
+    ctx.fillText("Ýttu á R til að spila aftur", 35, 700);
     ctx.shadowBlur = 0;
 
   };
@@ -394,18 +407,27 @@ function checkWin(){
             g_snakePlayer3.vel = 0
             g_snakePlayer4.vel = 0
 
-          if(g_snakePlayer1.dead === false) winner = "Player 1"
+          if(g_snakePlayer1.dead === false) winner = "Leikmaður 1"
           if(pickedplayers >= 2)
-            if(g_snakePlayer2.dead === false) winner = "Player 2"
+            if(g_snakePlayer2.dead === false) winner = "Leikmaður 2"
           if(pickedplayers >= 3)
-            if(g_snakePlayer3.dead === false) winner = "Player 3"
+            if(g_snakePlayer3.dead === false) winner = "Leikmaður 3"
           if(pickedplayers === 4)
-            if(g_snakePlayer4.dead === false) winner = "Player 4"
+            if(g_snakePlayer4.dead === false) winner = "Leikmaður 4"
 
 
         }
 
         if(deadPlayers === pickedplayers && pickedplayers === 1){
+          gameOver = true;
+          g_snakePlayer1.vel = 0
+          g_snakePlayer2.vel = 0
+          g_snakePlayer3.vel = 0
+          g_snakePlayer4.vel = 0
+        }
+
+        if(deadPlayers === pickedplayers){
+          winner = "     Enginn";
           gameOver = true;
           g_snakePlayer1.vel = 0
           g_snakePlayer2.vel = 0
@@ -483,6 +505,7 @@ function gameReset(){
   for(var i = 0; i < g_sprites.length; i++)
     g_sprites[i].glow = false;
 
+  start = false;
   picking = false;
   playing = false;
   updateplaying = false;

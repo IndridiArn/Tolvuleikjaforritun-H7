@@ -11,13 +11,22 @@ var entityManager = {
     this._menu.push(new Menu());
   },
   render: function(ctx) {
-    ctx.fillStyle = "white";
-    ctx.font ="bold 60px consolas";
-    ctx.fillText("Veldu þinn þingmann í ÞingmannaTron", 25, 100);
+
+    var background = new Image();
+    background.src = "resizeImageFolder/FPBG.jpg";
+    ctx.drawImage(background,0,0); 
+
+    ctx.shadowBlur = 50;
+    ctx.shadowColor = "#72EAE7";
+
+    ctx.fillStyle = "#72EAE7";
+    ctx.font = "bold 60px Bungee Shade";
+    ctx.fillText("Veldu þinn þingmann", 150, 130);
     if (numbplayers > selectedplayers.length){
-    ctx.fillText("Leikmaður ", 240, 250);
-    ctx.fillText(selectedplayers.length+1, 560, 250);
-    ctx.fillText(" á að velja", 590, 250);
+    ctx.fillText("Leikmaður ", 100, 280);
+    ctx.fillText(selectedplayers.length+1, 570, 280);
+    ctx.fillText(" á að velja", 620, 280);
+    ctx.shadowBlur = 0;
     }
     if (start === true) {
       ctx.fillText("Hefja leik! ", 400, 250)
@@ -25,6 +34,7 @@ var entityManager = {
 
     // TODO: Implement this
     this._menu[0].render(ctx);
+
 
   }
 }

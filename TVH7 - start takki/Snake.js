@@ -122,8 +122,8 @@ Snake.prototype.updateTrail = function() {
 Snake.prototype.renderTrail = function(ctx) {
   ctx.strokeStyle = this.color;
   ctx.lineWidth = 5;
-  ctx.shadowBlur = 50;
-  ctx.shadowColor = "white";
+  //ctx.shadowBlur = 50;
+  //ctx.shadowColor = "white";
   
   // gömlu línurnar renderaðar
   if(this.oldTrails.length > 0)
@@ -139,7 +139,7 @@ Snake.prototype.renderTrail = function(ctx) {
   ctx.lineTo(this.rTrail.destX, this.rTrail.destY);
   ctx.stroke();
   
-  ctx.shadowBlur = 0;
+  //ctx.shadowBlur = 0;
 }
 
 Snake.prototype.wrapPosition = function() {

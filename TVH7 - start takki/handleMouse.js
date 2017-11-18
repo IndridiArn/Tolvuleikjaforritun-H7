@@ -21,7 +21,7 @@ var pickedplayers = 0; // how many players HAVE chosen already
 var selectedplayers = []; // array of selected players
 var checker = true; // idk
 var playing = false;
-var start = true;
+
 
 function handleMouse(evt) {
 
@@ -156,9 +156,9 @@ function handleNumPlayers(evt) {
 
       if (g_mouseY > gameYstart && g_mouseY < gameYstop) {
         if (g_mouseX > gameXstart && g_mouseX < gameXstop) {
-          checker = false;
-          start = false;
+          checker = false;        
           playing = true;
+          start = true
         }
       }
     }

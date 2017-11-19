@@ -378,13 +378,13 @@ function renderSimulation(ctx) {
 
     ctx.shadowColor = "72EAE7";
     ctx.font = "bold 20px Bungee Shade";
-    ctx.fillText("Markmið ÞINGMANNATRON er að halda sínum", 30,380);
-    ctx.fillText("þingmanni sem lengst á lífi. ",30, 410);
+    ctx.fillText("Markmið ÞINGMANNATRON er að halda", 30,380);
+    ctx.fillText("sínum þingmanni sem lengst á lífi. ",30, 410);
     ctx.fillText("Þingmennirnir skilja eftir sig slóð",30, 440);
-    ctx.fillText("hvert sem þeir fara. Ef einhver klessir",30,470);
-    ctx.fillText("á hvort sem það eru veggir borðsins,",30,500);
-    ctx.fillText("slóð annarra eða eigin lætur sá",30,530);
-    ctx.fillText("þingmaður lífið samstundis.",30,560);
+    ctx.fillText("hvert sem þeir fara. Ef einhver",30,470);
+    ctx.fillText("klessir á hvort sem það eru veggir ,",30,500);
+    ctx.fillText("borðsins slóð annarra eða eigin ",30,530);
+    ctx.fillText("lætur sá þingmaður lífið samstundis.",30,560);
     ctx.fillText("Sá sem fellur síðast sigrar leikinn",30, 590);
     ctx.stroke();
 

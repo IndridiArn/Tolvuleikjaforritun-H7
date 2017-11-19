@@ -21,6 +21,8 @@ var pickedplayers = 0; // how many players HAVE chosen already
 var selectedplayers = []; // array of selected players
 var checker = true; // idk
 var playing = false;
+var info = false;
+var tilBaka = false;
 
 
 function handleMouse(evt) {
@@ -103,6 +105,18 @@ function handleNumPlayers(evt) {
   var playersStartHnitY = 400;
   var playersStopHnitY = 500;
 
+  //leikreglur
+  var leikreglurXstart = 340
+  var leikreglurXstop = 830
+  var leikreglurYstart = 750
+  var leikreglurYstop = 810
+
+  //tilbaka
+  var tilbakaXstart = 500
+  var tilbakarXstop = 735
+  var tilbakaYstart = 870
+  var tilbakaYstop = 905
+
 
     if (g_mouseY > playersStartHnitY && g_mouseY < playersStopHnitY) {
       if (g_mouseX > player1StartHnitX && g_mouseX < player1StopHnitX) {
@@ -132,6 +146,26 @@ function handleNumPlayers(evt) {
         picking = true;
       }
     }
+
+    //handlemouse fyrir leikreglur
+    if (g_mouseY > leikreglurYstart && g_mouseY < leikreglurYstop) {
+      if (g_mouseX > leikreglurXstart && g_mouseX < leikreglurXstop) {
+
+        checker = false;
+        info = true
+        picking = false;
+      }
+    }
+
+    //handlemouse fyrir til Baka í leikreglum
+    if (g_mouseY > tilbakaYstart && g_mouseY < tilbakaYstop) {
+      if (g_mouseX > tilbakaXstart && g_mouseX < tilbakarXstop) {
+
+        checker = false;
+        tilBaka = true;
+        picking = false;
+      }
+    }
   }
 
   //starta leiknum eftir picking phase
@@ -159,7 +193,7 @@ function handleNumPlayers(evt) {
 
       if (g_mouseY > gameYstart && g_mouseY < gameYstop) {
         if (g_mouseX > gameXstart && g_mouseX < gameXstop) {
-          checker = false;        
+          checker = false;
           playing = true;
           start = true
         }

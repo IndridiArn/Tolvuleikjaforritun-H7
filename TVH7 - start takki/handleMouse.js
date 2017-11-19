@@ -151,10 +151,10 @@ function handleNumPlayers(evt) {
     if (!button) return;
 
 
-    var gameXstart = 403;
-    var gameXstop = 753;
-    var gameYstart = 212;
-    var gameYstop = 251;
+    var gameXstart = 400;
+    var gameXstop = 800;
+    var gameYstart = 170;
+    var gameYstop = 300;
 
 
       if (g_mouseY > gameYstart && g_mouseY < gameYstop) {

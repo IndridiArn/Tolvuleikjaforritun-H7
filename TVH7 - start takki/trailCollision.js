@@ -4,6 +4,7 @@ function getPlayer(number){
     else if(number === 2) return g_snakePlayer2;
     else if(number === 3) return g_snakePlayer3;
     else if(number === 4) return g_snakePlayer4;
+    else if(number === 5) return g_botPlayer1;
 
 };
 
@@ -32,7 +33,7 @@ function checkCollision(n1, n2){
         console.log("Player " + n2 +  " hit player " + n1 + "'s trail!");
 
         }
-    
+
     }
 
 };
@@ -40,10 +41,13 @@ function checkCollision(n1, n2){
 
 function checkAll(pickedplayers) {
 
-  if(gameOver === false) { 
+  if(gameOver === false) {
 
   if (pickedplayers === 1){
-    checkCollision(1,1);
+    //checkCollision(1,1);
+    //checkCollision(1,5);
+    //checkCollision(5,1);
+    checkCollision(5,5);
   }
 
   if (pickedplayers === 2){

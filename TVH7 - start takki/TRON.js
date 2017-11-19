@@ -446,12 +446,12 @@ function renderSimulation(ctx) {
     ctx.stroke();
   }
 
-  if (picking === false && tilBaka === true && playing === false) {
+  if (picking === false && tilBaka === true && playing === false && info === false) {
     modeManager.render(ctx);
     if(numbplayers > 0 && numbplayers < 5) picking = true;
   }
 
-  if(picking === true && updateplaying === false && start === false){
+  if(picking === true && updateplaying === false && start === false && info === false){
     entityManager.render(ctx);
     //playing = true;
   }

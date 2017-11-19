@@ -164,6 +164,7 @@ function handleNumPlayers(evt) {
         checker = false;
         tilBaka = true;
         picking = false;
+        info = false;
       }
     }
   }

@@ -447,8 +447,8 @@ function renderSimulation(ctx) {
     ctx.fillRect(480,855,275,70);
     ctx.stroke();
     ctx.shadowBlur = 50;
-    ctx.shadowColor = "yellow";
-    ctx.fillStyle = "yellow";
+    ctx.shadowColor = "white";
+    ctx.fillStyle = "white";
     ctx.font = "bold 40px Bungee Shade";
     ctx.fillText("Til baka ", 500, 900)
     ctx.shadowBlur = 0;

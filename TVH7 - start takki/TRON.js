@@ -368,7 +368,10 @@ function renderSimulation(ctx) {
   };
   if(start === true){
     updateplaying = true;
+    ctx.shadowBlur = 50;
+    ctx.shadowColor = "white";
     currentPowerUp.render(ctx);
+    ctx.shadowBlur = 0;
   }
 
   if (gameOver === true) {

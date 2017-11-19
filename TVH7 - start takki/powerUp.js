@@ -40,7 +40,6 @@ powerUp.prototype.render = function(ctx) {
     p_sprites[3].scale = 0.25;
     p_sprites[3].drawWrappedCentredAt(ctx,this.cx,this.cy,0);
   }
-    //ctx.fillStyle="green";
 
 	//ctx.fillRect(this.cx,this.cy,10,10);
 	//ctx.stroke();

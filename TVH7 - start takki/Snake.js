@@ -249,7 +249,7 @@ Snake.prototype.getPowerUp = function(powerup) {
   var d = Math.sqrt(((powerup.cx - this.cx) * (powerup.cx - this.cx)) +
     ((powerup.cy - this.cy) * (powerup.cy - this.cy)))
 
-  if (d < 20 && powerup.active === true) {
+  if (d < 30 && powerup.active === true) {
     console.log("Powerup! " + "Number " + powerup.type);
     powerup.counter = 1000;
     powerup.active = false;

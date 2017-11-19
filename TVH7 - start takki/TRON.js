@@ -297,13 +297,16 @@ var gameOver = false;
 var deadPlayers = 0;
 var winner = "     Enginn";
 var start = false;
+var info = false;
+var tilBaka = false;
+
 // GAME-SPECIFIC RENDERING
 
 var background = new Image();
 background.src = "resizeImageFolder/grid.jpg";
 
 background.onload = function(ctx){
-    ctx.drawImage(background,0,0);   
+    ctx.drawImage(background,0,0);
 }
 
 function renderSimulation(ctx) {
@@ -314,6 +317,140 @@ function renderSimulation(ctx) {
     modeManager.render(ctx);
     if(numbplayers > 0 && numbplayers < 5) picking = true;
   }
+
+
+  //leikreglur
+  if (info===true && playing === false) {
+    //clearum canvasið
+    var prevfillStyle = ctx.fillStyle;
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    ctx.fillStyle = prevfillStyle;;
+    ctx.stroke();
+
+    //bakgrunnnur
+    var background1 = new Image();
+    background1.src = "resizeImageFolder/FPBG.jpg";
+    ctx.drawImage(background1,0,0);
+
+    //header
+    ctx.shadowBlur = 50;
+    ctx.shadowColor = "#72EAE7";
+    ctx.fillStyle = "#72EAE7";
+    ctx.font = "bold 90px Bungee Shade";
+    ctx.fillText("Leikreglur!", 200, 250);
+    ctx.stroke();
+
+    ctx.shadowBlur = 50;
+    ctx.shadowColor = "#72EAE7";
+    ctx.fillStyle = "#72EAE7";
+    ctx.font = "bold 50px Bungee Shade";
+    ctx.fillText("POWER UPS!", 400, 320);
+    ctx.stroke();
+
+    //myndir af powerups og texti
+    //BOOM
+    var power1 = new Image();
+    power1.src = "resizeImageFolder/PowUpClearReSize.png"
+    ctx.drawImage(power1,300,350, 50, 50);
+    ctx.shadowBlur = 50;
+    ctx.shadowColor = "72EAE7";
+    ctx.font = "bold 20px Bungee Shade";
+    ctx.fillText("Slóð óvina hverfur", 390, 380);
+    ctx.stroke();
+
+    //Althingi
+    var power2 = new Image();
+    power2.src = "resizeImageFolder/resizeAlthingi.png"
+    ctx.drawImage(power2,300,420, 50, 50);
+    ctx.shadowBlur = 50;
+    ctx.shadowColor = "72EAE7";
+    ctx.font = "bold 20px Bungee Shade";
+    ctx.fillText("Leikmaður fer hraðar enn óvinur", 390, 450);
+    ctx.stroke();
+
+    //Cash
+    var power3 = new Image();
+    power3.src = "resizeImageFolder/resizeCashMáney.png"
+    ctx.drawImage(power3,300,490, 50, 50);
+    ctx.shadowBlur = 50;
+    ctx.shadowColor = "72EAE7";
+    ctx.font = "bold 20px Bungee Shade";
+    ctx.fillText("Óvinur fer hægar enn Leikmaður", 390, 520);
+    ctx.stroke();
+
+    //Guardian
+    var power4 = new Image();
+    power4.src = "resizeImageFolder/resizeGuardian.png"
+    ctx.drawImage(power4,300,560, 50, 50);
+    ctx.shadowColor = "72EAE7";
+    ctx.font = "bold 20px Bungee Shade";
+    ctx.fillText("Leikmaður getur farið í gegnum ytri veggi", 390,590);
+    ctx.stroke();
+
+
+    //leikmaður 1
+    ctx.shadowBlur = 50;
+    ctx.shadowColor = "72EAE7";
+    ctx.font = "bold 30px Bungee Shade";
+    ctx.fillText("Leikmaður 1 ", 20, 700);
+    ctx.fillText("W ", 130,750);
+    ctx.fillText("A ", 80,800);
+    ctx.fillText("S ", 130,800);
+    ctx.fillText("D ", 180, 800);
+    ctx.shadowBlur = 0;
+    ctx.stroke();
+
+    //leikmaður 2
+    ctx.shadowBlur = 50;
+    ctx.shadowColor = "72EAE7";
+    ctx.font = "bold 30px Bungee Shade";
+    ctx.fillText("Leikmaður 2 ", 320, 700);
+    ctx.fillText("🡩 ", 430,750);
+    ctx.fillText("🡨 ", 370,800);
+    ctx.fillText("🡫 ", 430,800);
+    ctx.fillText("🡪 ", 490, 800);
+    ctx.shadowBlur = 0;
+    ctx.stroke();
+
+    //leikmaður 3
+    ctx.shadowBlur = 50;
+    ctx.shadowColor = "72EAE7";
+    ctx.font = "bold 30px Bungee Shade";
+    ctx.fillText("Leikmaður 3 ", 620, 700)
+    ctx.fillText("I ", 730,750);
+    ctx.fillText("J ", 670,800);
+    ctx.fillText("K ", 730,800);
+    ctx.fillText("L ", 790, 800);
+    ctx.shadowBlur = 0;
+    ctx.stroke();
+
+    //leikmaður 4
+    ctx.shadowBlur = 50;
+    ctx.shadowColor = "72EAE7";
+    ctx.font = "bold 30px Bungee Shade";
+    ctx.fillText("Leikmaður 4 ", 920, 700)
+    ctx.fillText("8 ", 1030,750);
+    ctx.fillText("4 ", 970,800);
+    ctx.fillText("5 ", 1030,800);
+    ctx.fillText("6 ", 1090, 800);
+    ctx.shadowBlur = 0;
+    ctx.stroke();
+
+    //Til Baka takki
+    ctx.shadowBlur = 50;
+    ctx.shadowColor = "72EAE7";
+    ctx.font = "bold 40px Bungee Shade";
+    ctx.fillText("Til baka ", 500, 900)
+    ctx.shadowBlur = 0;
+    ctx.stroke();
+  }
+
+  if (picking === false && tilBaka === true && playing === false) {
+    modeManager.render(ctx);
+    if(numbplayers > 0 && numbplayers < 5) picking = true;
+  }
+
   if(picking === true && updateplaying === false && start === false){
     entityManager.render(ctx);
     //playing = true;
@@ -347,6 +484,7 @@ function renderSimulation(ctx) {
     picking = false;
   }
 
+
   if (playing === true && updateplaying === false && start === false) {
     //if(pickedplayers ===1) start = false;
     //playing = false
@@ -364,6 +502,7 @@ function renderSimulation(ctx) {
     ctx.font = "bold 45px Bungee Shade";
     ctx.fillText("Hefja leik! ", 425, 250)
     ctx.shadowBlur = 0;
+
     //start = true
   };
   if(start === true){

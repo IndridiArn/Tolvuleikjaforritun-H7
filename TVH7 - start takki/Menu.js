@@ -22,7 +22,7 @@ function Menu() {
 
   Menu.prototype.update = function(du) {
     // I DID THIS BIT FOR YOU. NICE, AREN'T I? truly so
-    //jú gríðarlega flott. 
+    //jú gríðarlega flott.
   };
   Menu.prototype.render = function(ctx) {
     var i;
@@ -36,7 +36,7 @@ function Menu() {
       this.cx = cx;
       this.cy = cy;
     }
-    
+
     Menu.prototype.getPos = function() {
       return {
         posX: this.cx,

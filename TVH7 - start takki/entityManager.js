@@ -14,7 +14,7 @@ var entityManager = {
 
     var background = new Image();
     background.src = "resizeImageFolder/FPBG.jpg";
-    ctx.drawImage(background,0,0); 
+    ctx.drawImage(background,0,0);
 
     ctx.shadowBlur = 50;
     ctx.shadowColor = "#72EAE7";

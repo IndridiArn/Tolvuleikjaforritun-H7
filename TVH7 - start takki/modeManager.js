@@ -12,7 +12,7 @@ var modeManager = {
     var background = new Image();
     background.src = "resizeImageFolder/FPBG.jpg";
 
-    ctx.drawImage(background,0,0); 
+    ctx.drawImage(background,0,0);
 
     function drawBorder(xPos, yPos, width, height, thickness = 2) {
       ctx.fillStyle = "#72EAE7";
@@ -54,7 +54,10 @@ var modeManager = {
     ctx.fillText("ÞingmannaTron!", 90, 250);
     ctx.stroke();
     ctx.font = "bold 60px Bungee Shade";
-    ctx.fillText("Veldu fjölda þingmanna", 85, 700);
+    ctx.fillText("Veldu fjölda þingmanna", 85, 650);
+    ctx.stroke();
+    ctx.font = "bold 60px Bungee Shade";
+    ctx.fillText("Leikreglur", 350, 800);
 
     ctx.shadowBlur = 0;
 

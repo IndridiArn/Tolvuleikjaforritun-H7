@@ -309,11 +309,6 @@ background.onload = function(ctx){
 function renderSimulation(ctx) {
   if(playing === true) background.onload(ctx);
 
-  if (pickedplayers === 1) {
-    playing = true;
-    g_snakePlayer1.render1(ctx);
-    picking = false;
-  }
 
   if (picking === false && playing === false) {
     modeManager.render(ctx);
@@ -322,6 +317,12 @@ function renderSimulation(ctx) {
   if(picking === true && updateplaying === false && start === false){
     entityManager.render(ctx);
     //playing = true;
+  }
+
+  if (pickedplayers === 1) {
+    playing = true;
+    g_snakePlayer1.render1(ctx);
+    picking = false;
   }
 
   if (pickedplayers === 2 && selectedplayers.length === 2) {

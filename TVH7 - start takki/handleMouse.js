@@ -25,6 +25,8 @@ var playing = false;
 
 function handleMouse(evt) {
 
+  if(start === false){
+
   g_mouseX = evt.clientX - g_canvas.offsetLeft;
   g_mouseY = evt.clientY - g_canvas.offsetTop;
 
@@ -67,6 +69,7 @@ function handleMouse(evt) {
       }
     }
     pickedplayers = numbplayers;
+  }
   }
 
 console.log(selectedplayers[0])

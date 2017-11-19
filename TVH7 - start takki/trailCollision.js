@@ -12,13 +12,16 @@ function getPlayer(number){
 function checkCollision(n1, n2){
     p1 = getPlayer(n1);
     p2 = getPlayer(n2);
+    if(n1 != n2)
+    var d0 = Math.sqrt( ((p1.cx - p2.cx)*(p1.cx - p2.cx)) +
+                        ((p1.cy - p2.cy)*(p1.cy - p2.cy)))
 
     for(var i = 0; i < p1.trail.length-10; i++){
       var pos = p1.trail[i];
       var d = Math.sqrt( ((pos.cx - p2.cx)*(pos.cx - p2.cx)) +
                          ((pos.cy - p2.cy)*(pos.cy - p2.cy)))
 
-      if(d < 7){
+      if(d < 7 || d0 < 4 && p2.dead === false){
 
         p2.halt();
         endingSoundEffects[selectedplayers[n2-1]].play();

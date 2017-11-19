@@ -5,7 +5,6 @@ function Snake(descr) {
   }
   this.reset_cx = this.cx;
   this.reset_cy = this.cy;
-  this.reset_rotation = this.rotation;
   this.rTrail.startX = this.cx;
   this.rTrail.startY = this.cy;
   this.particles = []
@@ -86,7 +85,6 @@ Snake.prototype.update = function(du) {
 Snake.prototype.reset = function() {
   this.cx = this.reset_cx;
   this.cy = this.reset_cy;
-  this.rotation = this.reset_rotation;
 
   this.halt();
 };
@@ -105,10 +103,10 @@ Snake.prototype.deathParticles = function() {
 };
 
 Snake.prototype.halt = function() {
+  if(this.dead === false) this.deathParticles();
   this.vel = 0;
   this.dead = true;
 
-  this.deathParticles();
   
 };
 

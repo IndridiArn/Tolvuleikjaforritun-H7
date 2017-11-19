@@ -128,6 +128,26 @@ var g_snakePlayer4 = new Snake({
   GO_LEFT: KEY_LEFT_4,
   GO_RIGHT: KEY_RIGHT_6,
 });
+
+
+//===========
+//botAI
+//===========
+var g_botPlayer1 = new botAI({
+  number: 5,
+  cx: 950,
+  cy: 500,
+  dead: false,
+  wrap: false,
+  dir: 3,
+  vel: 4,
+  trail: [],
+  rTrail: [],
+  oldTrails: [],
+  color: 'white'
+})
+
+
 //================
 // POWERUPS
 //================
@@ -252,7 +272,8 @@ function updateSimulation(du) {
   //g_ball.update(du);
   if (updateplaying === true && gameOver === false) {
     if (pickedplayers === 1) {
-      g_snakePlayer1.update(du);
+      //g_snakePlayer1.update(du);
+      g_botPlayer1.update(du);
     }
     if (pickedplayers === 2) {
       g_snakePlayer1.update(du);
@@ -406,10 +427,10 @@ function renderSimulation(ctx) {
     ctx.shadowColor = "72EAE7";
     ctx.font = "bold 30px Bungee Shade";
     ctx.fillText("Leikmaður 2 ", 320, 700);
-    ctx.fillText("I ", 430,750);
-    ctx.fillText("J ", 370,800);
-    ctx.fillText("K ", 430,800);
-    ctx.fillText("L ", 490, 800);
+    ctx.fillText("🡩 ", 430,750);
+    ctx.fillText("🡨 ", 370,800);
+    ctx.fillText("🡫 ", 430,800);
+    ctx.fillText("🡪 ", 490, 800);
     ctx.shadowBlur = 0;
     ctx.stroke();
 
@@ -418,10 +439,10 @@ function renderSimulation(ctx) {
     ctx.shadowColor = "72EAE7";
     ctx.font = "bold 30px Bungee Shade";
     ctx.fillText("Leikmaður 3 ", 620, 700)
-    ctx.fillText("🡩 ", 730,750);
-    ctx.fillText("🡨 ", 670,800);
-    ctx.fillText("🡫 ", 730,800);
-    ctx.fillText("🡪 ", 790, 800);
+    ctx.fillText("I ", 730,750);
+    ctx.fillText("J ", 670,800);
+    ctx.fillText("K ", 730,800);
+    ctx.fillText("L ", 790, 800);
     ctx.shadowBlur = 0;
     ctx.stroke();
 
@@ -466,21 +487,19 @@ function renderSimulation(ctx) {
   }
 
   if (pickedplayers === 1) {
-    console.log("Rendering players (1)...")
     playing = true;
-    g_snakePlayer1.render1(ctx);
+    //g_snakePlayer1.render1(ctx);
+    g_botPlayer1.render1(ctx);
     picking = false;
   }
 
   if (pickedplayers === 2 && selectedplayers.length === 2) {
-    console.log("Rendering players (2)...")
     playing = true;
     g_snakePlayer1.render1(ctx);
     g_snakePlayer2.render2(ctx);
     picking = false;
   }
   if (pickedplayers === 3 && selectedplayers.length === 3) {
-    console.log("Rendering players (3)...")
     playing = true;
     g_snakePlayer1.render1(ctx);
     g_snakePlayer2.render2(ctx);
@@ -488,7 +507,6 @@ function renderSimulation(ctx) {
     picking = false;
   }
   if (pickedplayers >= 4 && selectedplayers.length >= 4) {
-    console.log("Rendering players (4)...")
     playing = true;
     g_snakePlayer1.render1(ctx);
     g_snakePlayer2.render2(ctx);
@@ -518,7 +536,6 @@ function renderSimulation(ctx) {
 
     //start = true
   };
-
   if(start === true){
     updateplaying = true;
     ctx.shadowBlur = 50;
@@ -598,6 +615,8 @@ function checkWin(){
 function gameReset(){
 
   if(gameOver === true){
+
+  //g_isUpdatePaused = true;
 
   g_snakePlayer1.cx = 50
   g_snakePlayer1.cy = 500

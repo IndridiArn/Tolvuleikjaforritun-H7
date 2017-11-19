@@ -51,24 +51,18 @@ function Menu() {
   Menu.prototype.wPadding = 0;
   Menu.prototype.hPadding = 0;
   //Menu.prototype.thingmenn =
-
-
   var canvas = document.getElementById("myCanvas");
   var ctx = canvas.getContext("2d");
   var canvas_width = canvas.width;
   var canvas_height = canvas.height;
-
   function Menu() {
     this.wPadding = canvas.width / 5;
     this.hPadding = canvas.height / 3;
   }
-
-
   Menu.prototype.render = function(ctx) {
     var i;
     var j;
     for (i = 0, j = this.wPadding; i < g_sprites.length; i += 2, j += this.wPadding) {
-
       ctx.fillRect(j - 90, this.hPadding - 125, 180, 250, "Red");
       ctx.stroke();
       g_sprites[i].drawWrappedCentredAt(ctx, j, this.hPadding, 0);

@@ -345,7 +345,7 @@ function renderSimulation(ctx) {
     ctx.shadowColor = "#72EAE7";
     ctx.fillStyle = "#72EAE7";
     ctx.font = "bold 50px Bungee Shade";
-    ctx.fillText("POWER UPS!", 400, 320);
+    ctx.fillText("POWER UPS:", 400, 320);
     ctx.stroke();
 
     //myndir af powerups og texti
@@ -366,7 +366,7 @@ function renderSimulation(ctx) {
     ctx.shadowBlur = 50;
     ctx.shadowColor = "72EAE7";
     ctx.font = "bold 20px Bungee Shade";
-    ctx.fillText("Leikmaður fer hraðar enn óvinur", 390, 450);
+    ctx.fillText("Leikmaður fer hraðar en óvinur", 390, 450);
     ctx.stroke();
 
     //Cash
@@ -376,7 +376,7 @@ function renderSimulation(ctx) {
     ctx.shadowBlur = 50;
     ctx.shadowColor = "72EAE7";
     ctx.font = "bold 20px Bungee Shade";
-    ctx.fillText("Óvinur fer hægar enn Leikmaður", 390, 520);
+    ctx.fillText("Óvinur fer hægar en Leikmaður", 390, 520);
     ctx.stroke();
 
     //Guardian
@@ -439,7 +439,16 @@ function renderSimulation(ctx) {
 
     //Til Baka takki
     ctx.shadowBlur = 50;
-    ctx.shadowColor = "72EAE7";
+    ctx.shadowColor = "#72EAE7";
+    ctx.fillStyle = "#72EAE7";
+    ctx.fillRect(475,850,285,80);
+    ctx.shadowBlur = 0;
+    ctx.fillStyle = "black";
+    ctx.fillRect(480,855,275,70);
+    ctx.stroke();
+    ctx.shadowBlur = 50;
+    ctx.shadowColor = "yellow";
+    ctx.fillStyle = "yellow";
     ctx.font = "bold 40px Bungee Shade";
     ctx.fillText("Til baka ", 500, 900)
     ctx.shadowBlur = 0;

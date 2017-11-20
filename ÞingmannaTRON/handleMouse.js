@@ -27,7 +27,7 @@ var tilBaka = false;
 
 function handleMouse(evt) {
 
-  if(start === false){
+  if(start === false && picking === true){
 
   g_mouseX = evt.clientX - g_canvas.offsetLeft;
   g_mouseY = evt.clientY - g_canvas.offsetTop;
@@ -117,7 +117,7 @@ function handleNumPlayers(evt) {
   var tilbakaYstart = 870
   var tilbakaYstop = 905
 
-
+  if(picking === false){
     if (g_mouseY > playersStartHnitY && g_mouseY < playersStopHnitY) {
       if (g_mouseX > player1StartHnitX && g_mouseX < player1StopHnitX) {
         numbplayers = 1;
@@ -146,13 +146,14 @@ function handleNumPlayers(evt) {
         picking = true;
       }
     }
+  }
 
     //handlemouse fyrir leikreglur
     if (g_mouseY > leikreglurYstart && g_mouseY < leikreglurYstop) {
       if (g_mouseX > leikreglurXstart && g_mouseX < leikreglurXstop) {
 
         checker = false;
-        info = true
+        info = true;
         picking = false;
       }
     }
@@ -196,7 +197,7 @@ function handleNumPlayers(evt) {
         if (g_mouseX > gameXstart && g_mouseX < gameXstop) {
           checker = false;
           playing = true;
-          start = true
+          start = true;
         }
       }
     }

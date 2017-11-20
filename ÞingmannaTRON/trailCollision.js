@@ -26,10 +26,10 @@ function checkCollision(n1, n2){
 
       if(d < 5 || d0 < 5 && p2.dead === false){
 
-        if(p2.dead === false) endingSoundEffects[selectedplayers[n2-1]].play();
+        if(p2.dead === false && p2.number < 5) endingSoundEffects[selectedplayers[n2-1]].play();
+        if(p2.dead === false && p2.number === 5) endingSoundEffects[selectedplayers[0]].play();
         p2.halt();
         p2.dead = true;
-
         console.log("Player " + n2 +  " hit player " + n1 + "'s trail!");
 
         }

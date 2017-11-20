@@ -190,6 +190,7 @@ var endingSoundEffects = [
   new Audio('sounds/outro-þorgerður-kat.wav')
 ];
 var silfrid = new Audio('sounds/silfuregils.wav');
+var lofsongur = new Audio('sounds/lofsongur.wav');
 //var tap = new Audio('sounds/intro.mp3');
 //var taplag = new Audio('sounds/intro.mp3');
 //var taptal = new Audio('sounds/intro.mp3');
@@ -451,10 +452,10 @@ function renderSimulation(ctx) {
     ctx.shadowColor = "72EAE7";
     ctx.font = "bold 30px Bungee Shade";
     ctx.fillText("Leikmaður 2 ", 320, 700);
-    ctx.fillText("I ", 430,750);
-    ctx.fillText("J ", 370,800);
-    ctx.fillText("K ", 430,800);
-    ctx.fillText("L ", 490, 800);
+    ctx.fillText("🡩 ", 430,750);
+    ctx.fillText("🡨 ", 370,800);
+    ctx.fillText("🡫 ", 430,800);
+    ctx.fillText("🡪 ", 490, 800);
     ctx.shadowBlur = 0;
     ctx.stroke();
 
@@ -463,10 +464,10 @@ function renderSimulation(ctx) {
     ctx.shadowColor = "72EAE7";
     ctx.font = "bold 30px Bungee Shade";
     ctx.fillText("Leikmaður 3 ", 620, 700)
-    ctx.fillText("🡩 ", 730,750);
-    ctx.fillText("🡨 ", 670,800);
-    ctx.fillText("🡫 ", 730,800);
-    ctx.fillText("🡪 ", 790, 800);
+    ctx.fillText("I ", 730,750);
+    ctx.fillText("J ", 670,800);
+    ctx.fillText("K ", 730,800);
+    ctx.fillText("L ", 790, 800);
     ctx.shadowBlur = 0;
     ctx.stroke();
 
@@ -599,6 +600,7 @@ function checkWin(){
         console.log("Dead players: " + deadPlayers + "    Picked players: " + pickedplayers)
 
           if(deadPlayers === pickedplayers - 1 && pickedplayers > 1){
+            silfrid.pause();
             gameOver = true;
             g_snakePlayer1.vel = 0
             g_snakePlayer2.vel = 0
@@ -617,6 +619,7 @@ function checkWin(){
         }
 
         if(deadPlayers === pickedplayers && pickedplayers === 1){
+          silfrid.pause();
           gameOver = true;
           g_snakePlayer1.vel = 0
           g_snakePlayer2.vel = 0
@@ -625,6 +628,7 @@ function checkWin(){
         }
 
         if(deadPlayers === pickedplayers){
+          silfrid.pause();
           winner = "     Enginn";
           gameOver = true;
           g_snakePlayer1.vel = 0
@@ -712,6 +716,8 @@ function gameReset(){
   gameOver = false;
   deadPlayers = 0;
   selectedplayers = [];
+  silfrid.currentTime = 0;
+  lofsongur.play();
 
 }
 

@@ -18,7 +18,6 @@ Snake.prototype.halfHeight = 10;
 
 Snake.prototype.update = function(du) {
   if (this.dead === false) {
-    silfrid.play();
 
     if (g_keys[this.GO_UP]) {
       if(this.dir != 2){
@@ -388,27 +387,23 @@ Snake.prototype.collidesWith = function() {
       //g_snakePlayer2.halt();
       //updateplaying = null;
       if (this.number === 1) {
+        if(this.dead === false) endingSoundEffects[selectedplayers[0]].play();
         g_snakePlayer1.halt();
-        silfrid.pause();
-        endingSoundEffects[selectedplayers[0]].play();
         console.log("Player 1 hit the wall!");
       }
       if (this.number === 2) {
+        if(this.dead === false)  endingSoundEffects[selectedplayers[1]].play();
         g_snakePlayer2.halt();
-        silfrid.pause();
-        endingSoundEffects[selectedplayers[1]].play();
         console.log("Player 2 hit the wall!");
       }
       if (this.number === 3) {
+        if(this.dead === false) endingSoundEffects[selectedplayers[1]].play();
         g_snakePlayer3.halt();
-        silfrid.pause();
-        endingSoundEffects[selectedplayers[1]].play();
         console.log("Player 3 hit the wall!");
       }
       if (this.number === 4) {
+        if(this.dead === false) endingSoundEffects[selectedplayers[1]].play();
         g_snakePlayer4.halt();
-        silfrid.pause();
-        endingSoundEffects[selectedplayers[1]].play();
         console.log("Player 4 hit the wall!");
       }
 

@@ -27,7 +27,7 @@ var tilBaka = false;
 
 function handleMouse(evt) {
 
-  if(start === false && picking === true){
+  if(start === false && picking === true && playing === false){
 
   g_mouseX = evt.clientX - g_canvas.offsetLeft;
   g_mouseY = evt.clientY - g_canvas.offsetTop;
@@ -52,7 +52,8 @@ function handleMouse(evt) {
           if (g_mouseX > minniX && g_mouseX < meiriX) {
             startingSoundEffects[i].play();
             playerpick = i;
-            console.log(i);
+            //console.log(i);
+            console.log(selectedplayers.length);
             selectedplayers.push(playerpick);
             g_sprites[i].glow = true;
             if(selectedplayers.length === 1)
@@ -71,6 +72,11 @@ function handleMouse(evt) {
       }
     }
     pickedplayers = numbplayers;
+    
+    if(numbplayers === selectedplayers.length){
+      lofsongur.pause();
+      lofsongur.currentTime = 0;
+  }
   }
   }
 
@@ -117,7 +123,7 @@ function handleNumPlayers(evt) {
   var tilbakaYstart = 870
   var tilbakaYstop = 905
 
-  if(picking === false){
+
     if (g_mouseY > playersStartHnitY && g_mouseY < playersStopHnitY) {
       if (g_mouseX > player1StartHnitX && g_mouseX < player1StopHnitX) {
         numbplayers = 1;
@@ -146,14 +152,13 @@ function handleNumPlayers(evt) {
         picking = true;
       }
     }
-  }
 
     //handlemouse fyrir leikreglur
     if (g_mouseY > leikreglurYstart && g_mouseY < leikreglurYstop) {
       if (g_mouseX > leikreglurXstart && g_mouseX < leikreglurXstop) {
 
         checker = false;
-        info = true;
+        info = true
         picking = false;
       }
     }
@@ -172,7 +177,6 @@ function handleNumPlayers(evt) {
 
   //starta leiknum eftir picking phase
   function handleStartgame(evt) {
-
 
     g_mouseX = evt.clientX - g_canvas.offsetLeft;
     g_mouseY = evt.clientY - g_canvas.offsetTop;
@@ -197,7 +201,8 @@ function handleNumPlayers(evt) {
         if (g_mouseX > gameXstart && g_mouseX < gameXstop) {
           checker = false;
           playing = true;
-          start = true;
+          start = true
+          silfrid.play();
         }
       }
     }

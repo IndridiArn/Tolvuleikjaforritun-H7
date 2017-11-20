@@ -112,6 +112,6 @@ g_main.init = function () {
     // so it's a risky option during "development"
     //
     //window.focus(true);
-
+    lofsongur.play();
     this._requestNextIteration();
 };

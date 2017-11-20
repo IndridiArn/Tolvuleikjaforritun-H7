@@ -54,10 +54,27 @@ var KEY_PAUSE = 'P'.charCodeAt(0);
 var KEY_STEP  = 'O'.charCodeAt(0);
 
 var g_isUpdatePaused = false;
+var themePaused = false;
+
+function pauseTheme() {
+        if(themePaused === false){
+            silfrid.pause();
+            themePaused = true;
+            return;
+        }
+
+        if(themePaused === true){
+            silfrid.play();
+            themePaused = false;
+            return;
+        }
+}
 
 function shouldSkipUpdate() {
     if (eatKey(KEY_PAUSE)) {
         g_isUpdatePaused = !g_isUpdatePaused;
+        pauseTheme();
+
     }
     return g_isUpdatePaused && !eatKey(KEY_STEP);
 }

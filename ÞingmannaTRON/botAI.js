@@ -81,7 +81,7 @@ botAI.prototype.update = function(du) {
         if (this.distance > 40) {
           for (i = 0; i < this.oldTrails.length; i++) {
             if (i % 2 === 0 || i === 0) {
-              if ((Math.abs(this.cy - this.oldTrails[i].startY)) < 10) { 
+              if ((Math.abs(this.cy - this.oldTrails[i].startY)) < 10) {
 
                 if (this.cx < canvas.width / 2) {
                   this.dir = 4;
@@ -380,13 +380,18 @@ botAI.prototype.reset = function() {
   this.halt();
 };
 
+
+
+
+
 botAI.prototype.halt = function() {
+
   this.vel = 0;
-  this.dead = true;
   console.log(this.cx + " : X hnit");
   console.log(this.cy + " : Y hnit");
   console.log(this.dir + ": áttin sem hann deyr í");
-  process.kill();
+  this.dead = true;
+
 };
 
 botAI.prototype.updateTrail = function() {
@@ -420,6 +425,7 @@ botAI.prototype.renderTrail = function(ctx) {
   ctx.stroke();
 
   ctx.shadowBlur = 0;
+
 }
 
 

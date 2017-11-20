@@ -46,9 +46,9 @@ function checkAll(pickedplayers) {
   if(gameOver === false) {
 
   if (pickedplayers === 1){
-    //checkCollision(1,1);
-    //checkCollision(1,5);
-    //checkCollision(5,1);
+    checkCollision(1,1);
+    checkCollision(1,5);
+    checkCollision(5,1);
     checkCollision(5,5);
   }
 

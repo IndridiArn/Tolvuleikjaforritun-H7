@@ -258,6 +258,7 @@ function updateSimulation(du) {
   if (updateplaying === true && gameOver === false) {
     if (pickedplayers === 1) {
       g_botPlayer1.update(du);
+      g_snakePlayer1.update(du);
     }
     if (pickedplayers === 2) {
       g_snakePlayer1.update(du);
@@ -346,6 +347,7 @@ function renderSimulation(ctx) {
   if (pickedplayers === 1) {
     playing = true;
     g_botPlayer1.render1(ctx);
+    g_snakePlayer1.render1(ctx);
     picking = false;
   }
 

@@ -91,7 +91,7 @@ Snake.prototype.reset = function() {
 
 Snake.prototype.deathParticles = function() {
 
-  for(var i = 0; i < 25; i++){
+  for(var i = 0; i < 40; i++){
     var p = new particle({
         cx: this.cx,
         cy: this.cy

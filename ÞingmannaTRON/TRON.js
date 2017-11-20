@@ -189,7 +189,7 @@ var endingSoundEffects = [
   new Audio('sounds/outro-siggi-ingi1.wav'),
   new Audio('sounds/outro-þorgerður-kat.wav')
 ];
-var silfrid = new Audio('sounds/silfuregils.wav');
+var silfrid = new Audio('sounds/island.wav');
 var lofsongur = new Audio('sounds/lofsongur.wav');
 //var tap = new Audio('sounds/intro.mp3');
 //var taplag = new Audio('sounds/intro.mp3');

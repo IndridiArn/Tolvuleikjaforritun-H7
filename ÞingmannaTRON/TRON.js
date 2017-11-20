@@ -318,6 +318,7 @@ var updateplaying = false;
 var gameOver = false;
 var deadPlayers = 0;
 var winner = "     Enginn";
+var winnerCol = "white";
 var start = false;
 var info = false;
 var tilBaka = false;
@@ -575,7 +576,9 @@ function renderSimulation(ctx) {
     ctx.font = "bold 60px Bungee Shade";
     ctx.fillStyle = "white";
     ctx.fillText("Leik lokið!",340,300);
+    ctx.fillStyle = winnerCol;
     ctx.fillText(winner, 140, 500);
+    ctx.fillStyle = "white";
     ctx.fillText("vinnur!", 690, 500);
     ctx.fillText("Ýttu á R til að spila aftur", 35, 700);
     ctx.shadowBlur = 0;
@@ -607,13 +610,25 @@ function checkWin(){
             g_snakePlayer3.vel = 0
             g_snakePlayer4.vel = 0
 
-          if(g_snakePlayer1.dead === false) winner = "Leikmaður 1"
+          if(g_snakePlayer1.dead === false){ 
+            winner = "Leikmaður 1"
+            winnerCol = g_snakePlayer1.color
+          }
           if(pickedplayers >= 2)
-            if(g_snakePlayer2.dead === false) winner = "Leikmaður 2"
+            if(g_snakePlayer2.dead === false){
+             winner = "Leikmaður 2"
+             winnerCol = g_snakePlayer2.color
+           }
           if(pickedplayers >= 3)
-            if(g_snakePlayer3.dead === false) winner = "Leikmaður 3"
+            if(g_snakePlayer3.dead === false){
+             winner = "Leikmaður 3"
+             winnerCol = g_snakePlayer3.color
+           }
           if(pickedplayers === 4)
-            if(g_snakePlayer4.dead === false) winner = "Leikmaður 4"
+            if(g_snakePlayer4.dead === false){
+             winner = "Leikmaður 4"
+             winnerCol = g_snakePlayer1.color
+           }
 
 
         }

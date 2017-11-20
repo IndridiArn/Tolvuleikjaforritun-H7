@@ -376,16 +376,18 @@ function renderSimulation(ctx) {
     ctx.fillText("LEIÐBEININGAR:", 30, 320);
     ctx.stroke();
 
-    ctx.shadowColor = "72EAE7";
-    ctx.font = "bold 20px Bungee Shade";
+    ctx.shadowColor = "white";
+    ctx.fillStyle = "white";
+    ctx.font = "bold 25px Black Ops One";
     ctx.fillText("Markmið ÞINGMANNATRON er að halda", 30,380);
     ctx.fillText("sínum þingmanni sem lengst á lífi. ",30, 410);
-    ctx.fillText("Þingmennirnir skilja eftir sig slóð",30, 440);
-    ctx.fillText("hvert sem þeir fara. Ef einhver",30,470);
-    ctx.fillText("klessir á hvort sem það eru veggir ,",30,500);
-    ctx.fillText("borðsins slóð annarra eða eigin ",30,530);
-    ctx.fillText("lætur sá þingmaður lífið samstundis.",30,560);
-    ctx.fillText("Sá sem fellur síðast sigrar leikinn",30, 590);
+    ctx.fillText("Þingmennirnir skilja eftir sig slóð hvert",30, 440);
+    ctx.fillText("sem þeir fara. Ef einhver klessir ",30,470);
+    ctx.fillText("á, hvort sem það er á veggi borðsins",30,500);
+    ctx.fillText("eða á sína eigin slóð eða annarra, þá",30,530);
+    ctx.fillText("lætur sá þingmaður lífið samstundis. Sá",30,560);
+    ctx.fillText("þingmaður sem fellur síðast sigrar leikinn ",30, 590);
+    ctx.fillText("og er kjörinn konungur/drottning Íslands.",30, 620);
     ctx.stroke();
 
     //myndir af powerups og texti
@@ -395,8 +397,8 @@ function renderSimulation(ctx) {
     ctx.drawImage(power1,650,350, 50, 50);
     ctx.shadowBlur = 50;
     ctx.shadowColor = "72EAE7";
-    ctx.font = "bold 20px Bungee Shade";
-    ctx.fillText("Slóð óvina hverfur", 720, 380);
+    ctx.font = "bold 25px Black Ops One";
+    ctx.fillText("Slóð andstæðinga hverfur", 720, 380);
     ctx.stroke();
 
     //Althingi
@@ -405,8 +407,8 @@ function renderSimulation(ctx) {
     ctx.drawImage(power2,650,420, 50, 50);
     ctx.shadowBlur = 50;
     ctx.shadowColor = "72EAE7";
-    ctx.font = "bold 20px Bungee Shade";
-    ctx.fillText("Leikmaður fer hraðar en óvinur", 720, 450);
+    ctx.font = "bold 25px Black Ops One";
+    ctx.fillText("Hraði leikmanns eykst", 720, 450);
     ctx.stroke();
 
     //Cash
@@ -415,8 +417,8 @@ function renderSimulation(ctx) {
     ctx.drawImage(power3,650,490, 50, 50);
     ctx.shadowBlur = 50;
     ctx.shadowColor = "72EAE7";
-    ctx.font = "bold 20px Bungee Shade";
-    ctx.fillText("Óvinur fer hægar en Leikmaður", 720, 520);
+    ctx.font = "bold 25px Black Ops One";
+    ctx.fillText("Hraði andstæðinga minnkar", 720, 520);
     ctx.stroke();
 
     //Guardian
@@ -424,7 +426,7 @@ function renderSimulation(ctx) {
     power4.src = "resizeImageFolder/resizeGuardian.png"
     ctx.drawImage(power4,650,560, 50, 50);
     ctx.shadowColor = "72EAE7";
-    ctx.font = "bold 20px Bungee Shade";
+    ctx.font = "bold 25px Black Ops One";
     ctx.fillText("Leikmaður kemst í gegnum veggi", 720,590);
     ctx.stroke();
 
@@ -434,6 +436,7 @@ function renderSimulation(ctx) {
     //leikmaður 1
     ctx.shadowBlur = 50;
     ctx.shadowColor = "72EAE7";
+    ctx.fillStyle = "#72EAE7";
     ctx.font = "bold 30px Bungee Shade";
     ctx.fillText("Leikmaður 1 ", 20, 700);
     ctx.fillText("W ", 130,750);

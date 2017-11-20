@@ -4,8 +4,8 @@ function particle(descr) {
   }
   particle.prototype.cx = 100
   particle.prototype.cy = 100
-  this.velx = (Math.random() * 5) - 2.5
-  this.vely = (Math.random() * 5) - 2.5
+  this.velx = (Math.random() * 2.5) - 1.25
+  this.vely = (Math.random() * 2.5) - 1.25
   particle.prototype.lifeSpan = 500;
   particle.prototype.curAlpha = 1;
 
@@ -23,7 +23,7 @@ particle.prototype.update = function() {
 particle.prototype.render = function(ctx) {
         if(this.lifeSpan > 0){
         ctx.globalAlpha = this.curAlpha;
-        ctx.globalAlpha -= 0.02;
+        ctx.globalAlpha -= 0.01;
         this.curAlpha = ctx.globalAlpha;
       
         ctx.beginPath();

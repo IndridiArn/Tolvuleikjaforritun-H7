@@ -16,6 +16,7 @@ function Snake(descr) {
 Snake.prototype.halfWidth = 10;
 Snake.prototype.halfHeight = 10;
 
+// An update function for the snake prototype
 Snake.prototype.update = function(du) {
   if (this.dead === false) {
 
@@ -68,8 +69,6 @@ Snake.prototype.update = function(du) {
     else if (this.dir === 4)
       this.cx += this.vel * du;
 
-    this.wrapPosition();
-
     this.updateTrail();
 
     this.collidesWith();
@@ -81,6 +80,7 @@ Snake.prototype.update = function(du) {
 
 };
 
+// A reset function, not used in the final product
 Snake.prototype.reset = function() {
   this.cx = this.reset_cx;
   this.cy = this.reset_cy;
@@ -88,6 +88,8 @@ Snake.prototype.reset = function() {
   this.halt();
 };
 
+// A function that creates a particle "bomb" that fans
+// out when a player hits a wall or a trail.
 Snake.prototype.deathParticles = function() {
 
   for(var i = 0; i < 40; i++){
@@ -101,6 +103,7 @@ Snake.prototype.deathParticles = function() {
 
 };
 
+// Halt function used for player death
 Snake.prototype.halt = function() {
   if(this.dead === false) this.deathParticles();
   this.vel = 0;
@@ -109,6 +112,8 @@ Snake.prototype.halt = function() {
   
 };
 
+// Trail update, both for collision coordinates
+// and line coordinates for the rendering
 Snake.prototype.updateTrail = function() {
   this.trail.push({cx: this.cx, cy:this.cy});
 
@@ -116,13 +121,21 @@ Snake.prototype.updateTrail = function() {
   this.rTrail.destY = this.cy;
 }
 
+// The trail is rendered by keeping track of old lines that are pushed
+// to an array each time a player makes a turn. The current line is
+// tracked and updated as the player moves.
+// Both old lines and the current one are rendered here
+// shadowBlur is an extremely expensive operation and is therefore
+// omitted for performance reasons. It's not a massive performance issue
+// but it does slow the game down a bit when the trails have grown to a
+// length that covers half the screen.
 Snake.prototype.renderTrail = function(ctx) {
   ctx.strokeStyle = this.color;
   ctx.lineWidth = 5;
   //ctx.shadowBlur = 50;
   //ctx.shadowColor = "white";
   
-  // gömlu línurnar renderaðar
+  // Old lines rendered
   if(this.oldTrails.length > 0)
   for(var i = 0; i < this.oldTrails.length; i++){
     ctx.beginPath();
@@ -130,7 +143,7 @@ Snake.prototype.renderTrail = function(ctx) {
     ctx.lineTo(this.oldTrails[i].destX, this.oldTrails[i].destY);
     ctx.stroke();       
   }
-  // Núverandi lína renderuð
+  // Current line rendered
   ctx.beginPath();
   ctx.moveTo(this.rTrail.startX, this.rTrail.startY);
   ctx.lineTo(this.rTrail.destX, this.rTrail.destY);
@@ -139,43 +152,29 @@ Snake.prototype.renderTrail = function(ctx) {
   //ctx.shadowBlur = 0;
 }
 
-Snake.prototype.wrapPosition = function() {
 
-  /*
-    if (this.cy + g_snakeSprite.img.height < 0) this.cy += myCanvas.height;
-    if (this.cy - g_snakeSprite.img.width > myCanvas.width) this.cy -= myCanvas.width;
-    if (this.cx + g_snakeSprite.img.height < 0) this.cx += myCanvas.height;
-    if (this.cx - g_snakeSprite.img.width > myCanvas.width) this.cx -= myCanvas.width;
-  */
-
-};
-
+// Four render funtions for each possible player
 Snake.prototype.render1 = function(ctx) {
-  // (cx, cy) is the centre; must offset it for drawing
   ctx.fillStyle = this.color;
 
   this.renderTrail(ctx);
 
   ctx.shadowBlur = 10;
   ctx.shadowColor = this.color;
+  // The player "head" is a sprite
   g_sprites[selectedplayers[0]].scale = 0.3;
   g_sprites[selectedplayers[0]].drawWrappedCentredAt(ctx, this.cx, this.cy, this.rotation);
   g_sprites[selectedplayers[0]].scale = 1;
 
-  /*
-    g_sprites[playerpick].scale = 0.3;
-    g_sprites[playerpick].drawWrappedCentredAt(ctx, this.cx, this.cy, this.rotation);
-    g_sprites[playerpick].scale = 1;
-  */
   ctx.shadowBlur = 0;
 
+  // Rendering for the particle death bomb
   if(this.dead === true){
     drawParticles(ctx, this.particles)
   }
 };
 
 Snake.prototype.render2 = function(ctx) {
-  // (cx, cy) is the centre; must offset it for drawing
   ctx.fillStyle = this.color;
 
   this.renderTrail(ctx);
@@ -185,11 +184,6 @@ Snake.prototype.render2 = function(ctx) {
   g_sprites[selectedplayers[1]].scale = 0.3;
   g_sprites[selectedplayers[1]].drawWrappedCentredAt(ctx, this.cx, this.cy, this.rotation);
   g_sprites[selectedplayers[1]].scale = 1;
-  /*
-    g_sprites[playerpick].scale = 0.3;
-    g_sprites[playerpick].drawWrappedCentredAt(ctx, this.cx, this.cy, this.rotation);
-    g_sprites[playerpick].scale = 1;
-  */
 
   ctx.shadowBlur = 0;
 
@@ -197,6 +191,7 @@ Snake.prototype.render2 = function(ctx) {
     drawParticles(ctx, this.particles)
   }
 };
+
 Snake.prototype.render3 = function(ctx) {
   ctx.fillStyle = this.color;
 
@@ -207,19 +202,15 @@ Snake.prototype.render3 = function(ctx) {
   g_sprites[selectedplayers[2]].scale = 0.3;
   g_sprites[selectedplayers[2]].drawWrappedCentredAt(ctx, this.cx, this.cy, this.rotation);
   g_sprites[selectedplayers[2]].scale = 1;
-  /*
-    g_sprites[playerpick].scale = 0.3;
-    g_sprites[playerpick].drawWrappedCentredAt(ctx, this.cx, this.cy, this.rotation);
-    g_sprites[playerpick].scale = 1;
-  */
+
   ctx.shadowBlur = 0;
 
   if(this.dead === true){
     drawParticles(ctx, this.particles)
   }
 };
+
 Snake.prototype.render4 = function(ctx) {
-  // (cx, cy) is the centre; must offset it for drawing
   ctx.fillStyle = this.color;
 
   this.renderTrail(ctx);
@@ -230,11 +221,7 @@ Snake.prototype.render4 = function(ctx) {
   g_sprites[selectedplayers[3]].scale = 0.3;
   g_sprites[selectedplayers[3]].drawWrappedCentredAt(ctx, this.cx, this.cy, this.rotation);
   g_sprites[selectedplayers[3]].scale = 1;
-  /*
-    g_sprites[playerpick].scale = 0.3;
-    g_sprites[playerpick].drawWrappedCentredAt(ctx, this.cx, this.cy, this.rotation);
-    g_sprites[playerpick].scale = 1;
-  */
+
   ctx.shadowBlur = 0;
 
   if(this.dead === true){
@@ -242,7 +229,8 @@ Snake.prototype.render4 = function(ctx) {
   }
 };
 
-
+// Calculate if a player has collided with a powerup and
+// determine which type of powerup it is
 Snake.prototype.getPowerUp = function(powerup) {
 
   var d = Math.sqrt(((powerup.cx - this.cx) * (powerup.cx - this.cx)) +
@@ -253,10 +241,11 @@ Snake.prototype.getPowerUp = function(powerup) {
     powerup.counter = 1000;
     powerup.active = false;
 
-
+    // speedup powerup
     if (currentPowerUp.type === 0)
       this.vel = this.vel + 1;
 
+    // Trail bomb powerup - all cases
     else if (currentPowerUp.type === 1) {
       if (this.number === 1){
         g_snakePlayer2.trail = []
@@ -340,9 +329,7 @@ Snake.prototype.getPowerUp = function(powerup) {
     } 
 
 
-
-
-
+    // Opponent slowdown powerup - all cases
     else if (currentPowerUp.type === 2) {
       if (this.number === 1){
         g_snakePlayer2.vel = g_snakePlayer2.vel - 1;
@@ -368,7 +355,7 @@ Snake.prototype.getPowerUp = function(powerup) {
         g_snakePlayer3.vel = g_snakePlayer3.vel - 1;
       }
 
-
+      // Wraparound powerup
     } else if (currentPowerUp.type === 3)
       this.wrap = true;
   }
@@ -378,14 +365,14 @@ Snake.prototype.getPowerUp = function(powerup) {
 
 
 
-
+// Check for collision with the walls.
+// Trail collision is monitored through trailCollision.js
 Snake.prototype.collidesWith = function() {
+
 
   if (this.wrap === false) {
     if (this.cx < 0 || this.cx > 1190 || this.cy < 0 || this.cy > 990) {
-      //g_snakePlayer1.halt();
-      //g_snakePlayer2.halt();
-      //updateplaying = null;
+
       if (this.number === 1) {
         if(this.dead === false) endingSoundEffects[selectedplayers[0]].play();
         g_snakePlayer1.halt();
@@ -411,6 +398,8 @@ Snake.prototype.collidesWith = function() {
 
   }
 
+  // If the player has the wraparound powerup
+  // he won't hit the walls
   if (this.wrap === true) {
     if (this.cx < 0){
       this.cx = this.cx + 1190;
@@ -441,8 +430,5 @@ Snake.prototype.collidesWith = function() {
       this.rTrail.startY = this.cy;
     }
   }
-
-
-  //silfrid.currentTime = 0;
 
 };

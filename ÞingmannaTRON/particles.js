@@ -1,3 +1,8 @@
+// ========================
+// FANCY PARTICLE EXPLOSION
+// ========================
+
+// Each particle has it's own random velocity
 function particle(descr) {
   for (var property in descr) {
     this[property] = descr[property];
@@ -11,6 +16,7 @@ function particle(descr) {
 
 }
 
+// Allow it to fan out while it's still alive
 particle.prototype.update = function() {
   if(this.lifeSpan > 0)
         this.lifeSpan -= 1;
@@ -20,6 +26,8 @@ particle.prototype.update = function() {
 
 };
 
+// Make the particles dissipate as they travel
+// further from the source.
 particle.prototype.render = function(ctx) {
         if(this.lifeSpan > 0){
         ctx.globalAlpha = this.curAlpha;
@@ -36,6 +44,8 @@ particle.prototype.render = function(ctx) {
   
 };
 
+// Simple draw function. Called when a player
+// dies.
 function drawParticles(ctx, particles) {
   
   for(var i = 0; i < particles.length; i++){

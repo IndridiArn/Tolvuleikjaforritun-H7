@@ -1,4 +1,4 @@
-
+// Gets the player objuect through the ID number
 function getPlayer(number){
     if(number === 1) return g_snakePlayer1;
     else if(number === 2) return g_snakePlayer2;
@@ -9,7 +9,7 @@ function getPlayer(number){
 };
 
 
-
+// Universal trail collision function
 function checkCollision(n1, n2){
     p1 = getPlayer(n1);
     p2 = getPlayer(n2);
@@ -39,6 +39,8 @@ function checkCollision(n1, n2){
 };
 
 
+// A function to check all collision cases
+// through the checkCollision function
 function checkAll(pickedplayers) {
 
   if(gameOver === false) {

@@ -1,15 +1,9 @@
 // ==============
-// MOUSE HANDLING
+// MOUSE HANDLING 
 // ==============
 
 "use strict";
 
-/* jshint browser: true, devel: true, globalstrict: true */
-
-/*
-0        1         2         3         4         5         6         7         8
-12345678901234567890123456789012345678901234567890123456789012345678901234567890
-*/
 var g_canvas = document.getElementById("myCanvas");
 var g_ctx = g_canvas.getContext("2d");
 var g_mouseX = 0,
@@ -19,12 +13,13 @@ var playerpick = 0; // which player is choosing now
 var numbplayers = 0; // how many players should choose
 var pickedplayers = 0; // how many players HAVE chosen already
 var selectedplayers = []; // array of selected players
-var checker = true; // idk
-var playing = false;
-var info = false;
-var tilBaka = false;
+var checker = true;
+var playing = false; // game ongoing
+var info = false; // info button active/inactive
+var tilBaka = false; // back button active/inactive
 
 
+// Handler for the player selection
 function handleMouse(evt) {
 
   if(start === false && picking === true && playing === false){
@@ -32,13 +27,8 @@ function handleMouse(evt) {
   g_mouseX = evt.clientX - g_canvas.offsetLeft;
   g_mouseY = evt.clientY - g_canvas.offsetTop;
 
-  //console.log(g_mouseX + " hérna er músin staðsett");
-  //// If no button is being pressed, then bail
-  //if (!evt.which) return;
-  // If no button is being pressed, then bail
   var button = evt.buttons === undefined ? evt.which : evt.buttons;
   if (!button) return;
-  //entityManager.playSoundSelect(g_mouseX, g_mouseY);
 
   var minniY = 450;
   var meiriY = 550;
@@ -83,16 +73,13 @@ function handleMouse(evt) {
 console.log(selectedplayers[0])
 console.log(selectedplayers[1])
 
+// Handler for the number of players selection
 function handleNumPlayers(evt) {
 
 
   g_mouseX = evt.clientX - g_canvas.offsetLeft;
   g_mouseY = evt.clientY - g_canvas.offsetTop;
 
-  //console.log(g_mouseX + " hérna er músin staðsett");
-  //// If no button is being pressed, then bail
-  //if (!evt.which) return;
-  // If no button is being pressed, then bail
   var button = evt.buttons === undefined ? evt.which : evt.buttons;
   if (!button) return;
 
@@ -111,13 +98,13 @@ function handleNumPlayers(evt) {
   var playersStartHnitY = 400;
   var playersStopHnitY = 500;
 
-  //leikreglur
+  //leikreglur button coords
   var leikreglurXstart = 340
   var leikreglurXstop = 830
   var leikreglurYstart = 750
   var leikreglurYstop = 810
 
-  //tilbaka
+  //back button coords
   var tilbakaXstart = 500
   var tilbakarXstop = 735
   var tilbakaYstart = 870
@@ -153,7 +140,7 @@ function handleNumPlayers(evt) {
       }
     }
 
-    //handlemouse fyrir leikreglur
+    //handlemouse for game rules
     if (g_mouseY > leikreglurYstart && g_mouseY < leikreglurYstop) {
       if (g_mouseX > leikreglurXstart && g_mouseX < leikreglurXstop) {
 
@@ -163,7 +150,7 @@ function handleNumPlayers(evt) {
       }
     }
 
-    //handlemouse fyrir til Baka í leikreglum
+    //handlemouse for the "back" button
     if (g_mouseY > tilbakaYstart && g_mouseY < tilbakaYstop) {
       if (g_mouseX > tilbakaXstart && g_mouseX < tilbakarXstop) {
 
@@ -175,18 +162,12 @@ function handleNumPlayers(evt) {
     }
   }
 
-  //starta leiknum eftir picking phase
+  //Handler for the start button
   function handleStartgame(evt) {
 
     g_mouseX = evt.clientX - g_canvas.offsetLeft;
     g_mouseY = evt.clientY - g_canvas.offsetTop;
-    //console.log(g_mouseX + " hérna er músin staðsett");
-    //console.log(g_mouseY + " hérna er músin staðsett");
 
-    //console.log(g_mouseX + " hérna er músin staðsett");
-    //// If no button is being pressed, then bail
-    //if (!evt.which) return;
-    // If no button is being pressed, then bail
     var button = evt.buttons === undefined ? evt.which : evt.buttons;
     if (!button) return;
 
@@ -206,8 +187,6 @@ function handleNumPlayers(evt) {
         }
       }
     }
-
-
 
 
 // Handle "down" and "move" events the same way.

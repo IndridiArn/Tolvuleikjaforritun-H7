@@ -343,13 +343,9 @@ botAI.prototype.update = function(du) {
     /*
         if(canvas.width - this.cx > 1190 && canvas.height - this.cy < 15)
         this.dir = 1;
-
         if(canvas.width - this.cx > 1190 && canvas.height - this.cy > 15 ) this.dir = 2;
-
-
         if(canvas.height - this.cy < 15 && canvas.width - this.cx < 15 ) this.dir = 1;
         if(canvas.height-  this.cy > 990 && canvas.width - this.cx < 15 ) this.dir = 4;
-
         if(canvas.height - this.cy < 15 && canvas.width - this.cx > 1190 ) this.dir = 4;
         if(canvas.height-  this.cy < 990 && canvas.width - this.cx > 1190 ) this.dir = 1;
     */

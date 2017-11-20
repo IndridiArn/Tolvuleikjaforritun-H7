@@ -1,4 +1,6 @@
-
+// ===================================
+// A "HOW MANY PLAYERS" SELECTION MENU
+// ===================================
 
 "use strict";
 var entityManager = {
@@ -32,9 +34,7 @@ var entityManager = {
       ctx.fillText("Hefja leik! ", 400, 250)
     }
 
-    // TODO: Implement this
     this._menu[0].render(ctx);
-
 
   }
 }

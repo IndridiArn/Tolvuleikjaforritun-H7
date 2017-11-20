@@ -359,14 +359,14 @@ function renderSimulation(ctx) {
     ctx.shadowColor = "#72EAE7";
     ctx.fillStyle = "#72EAE7";
     ctx.font = "bold 90px Bungee Shade";
-    ctx.fillText("Leikreglur!", 200, 250);
+    ctx.fillText("Leikreglur!", 200, 200);
     ctx.stroke();
 
     ctx.shadowBlur = 50;
     ctx.shadowColor = "#72EAE7";
     ctx.fillStyle = "#72EAE7";
     ctx.font = "bold 50px Bungee Shade";
-    ctx.fillText("POWER UPS:", 650, 320);
+    ctx.fillText("POWER UPS:", 700, 320);
     ctx.stroke();
 
     ctx.shadowBlur = 50;

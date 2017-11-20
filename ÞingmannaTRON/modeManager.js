@@ -25,8 +25,8 @@ var modeManager = {
     ctx.fillStyle = "black";
     ctx.fillRect(65, 405, 140, 90);
     ctx.fillStyle = "white";
-    ctx.font = "bold 40px Bungee Shade";
-    ctx.fillText("1", 117, 460);
+    ctx.font = "bold 27px Bungee Shade";
+    ctx.fillText("1 vs AI", 75, 458);
     ctx.stroke();
     drawBorder(360, 400, 150, 100);
     ctx.fillStyle = "black";
